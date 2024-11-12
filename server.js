@@ -76,6 +76,26 @@ wifi.init({
   iface: "wlan0", // Ensure this matches your Wi-Fi interface
 });
 
+// Function to check current connection status
+async function checkConnection() {
+  try {
+    const currentConnections = await wifi.getCurrentConnections();
+    const connected = currentConnections.some(
+      (connection) => connection.ssid === TARGET_SSID
+    );
+
+    if (connected) {
+      console.log(`✔ Already connected to "${TARGET_SSID}"`);
+    } else {
+      console.log(`✖ Not connected to "${TARGET_SSID}". Starting scan...`);
+      scanAndConnect();
+    }
+  } catch (error) {
+    console.error("Error checking current connection:", error);
+    scanAndConnect();
+  }
+}
+
 // Function to scan and connect to the target network
 async function scanAndConnect() {
   try {
@@ -114,8 +134,8 @@ async function scanAndConnect() {
   }
 }
 
-// Start scanning and connecting
-scanAndConnect();
+// Start by checking the connection status
+checkConnection();
 
 // Start the server and log current connections
 app.listen(3001, () => {
