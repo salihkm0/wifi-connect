@@ -60,7 +60,6 @@
 //   console.log(`✔ Server running on port 3001`);
 // });
 
-
 const express = require("express");
 const wifi = require("node-wifi");
 
@@ -74,7 +73,7 @@ const SCAN_INTERVAL = 30000; // 30 seconds
 
 // Initialize wifi with the network interface
 wifi.init({
-  iface: "wlan0", // Replace "wlan0" with the actual network interface name
+  iface: "wlan0", // Ensure this matches your Wi-Fi interface
 });
 
 // Function to scan and connect to the target network
@@ -95,11 +94,11 @@ async function scanAndConnect() {
         console.log(`WiFi connected to "${TARGET_SSID}"`);
       } catch (error) {
         console.log(
-          `Failed to connect. The WiFi password might be incorrect for "${TARGET_SSID}". Retrying in ${
+          `Failed to connect. Retrying connection in ${
             SCAN_INTERVAL / 1000
-          } seconds.`
+          } seconds. Please ensure the password is correct.`
         );
-        setTimeout(scanAndConnect, SCAN_INTERVAL); // Retry on incorrect password
+        setTimeout(scanAndConnect, SCAN_INTERVAL); // Retry connection after SCAN_INTERVAL
       }
     } else {
       console.log(
