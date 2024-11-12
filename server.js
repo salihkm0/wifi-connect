@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 // Configuration
-const TARGET_SSID = "iQOO Z5";
+const TARGET_SSID = "BSNL_FTTH_9660_5G";
 const PASSWORD = "Your_WiFi_Password";
 const SCAN_INTERVAL = 30000; // 30 seconds
 
