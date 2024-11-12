@@ -5,8 +5,8 @@ const app = express();
 app.use(express.json());
 
 // Configuration
-const TARGET_SSID = "BSNL_FTTH_9660_5G";
-const PASSWORD = "Your_WiFi_Password";
+const TARGET_SSID = "wifi_1";
+const PASSWORD = "abcd1234";
 const SCAN_INTERVAL = 30000; // 30 seconds
 
 // Initialize wifi with the network interface
@@ -33,12 +33,14 @@ async function scanAndConnect() {
         console.log(`WiFi connected to "${TARGET_SSID}"`);
       } catch (error) {
         console.log(
-          `Failed to connect. WiFi password might be incorrect for "${TARGET_SSID}".`
+          `Failed to connect. WiFi password might be incorrect for "${TARGET_SSID}".
+            Please Change Your wifi Password to ${PASSWORD}
+          `
         );
       }
     } else {
       console.log(
-        `Network "${TARGET_SSID}" not found. Will retry in ${
+        `Network "${TARGET_SSID}" not found.Please Create a wifi with ssid : ${TARGET_SSID} and Password : ${PASSWORD}. Will retry in ${
           SCAN_INTERVAL / 1000
         } seconds.`
       );
