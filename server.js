@@ -11,7 +11,7 @@ const SCAN_INTERVAL = 30000; // 30 seconds
 
 // Initialize wifi with the network interface
 wifi.init({
-  iface: "null",
+  iface: "wlan0",
   //   iface: "en0" // Replace with your network interface if needed, or leave as null for automatic detection
 });
 
